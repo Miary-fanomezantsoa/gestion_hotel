@@ -2,8 +2,7 @@ un compte rendu le samedi 7-22-2025
 
     Cloner le projet pour le dépôt Ouvrez un terminal ou Git Bash etz exécutez cette commande :
 
-git clone https://github.com/nom-utilisateur/nom-du-repository.git
-
+git clone https://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@github.com/Miary-fanomezantsoa/gestion_hotel
     Installateur moins dépendances Allez dans le dossier du projet :
 
 cd gestion-hôtel
