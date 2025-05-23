@@ -21,3 +21,4 @@ Route::get('/', function () {
 Route::resource('clients', ClientController::class);
 Route::resource('restaurants', RestaurantController::class);
 Route::resource('personnels', PersonnelController::class);
+Route::resource('reservations', ReservationEvenementController::class);
