@@ -22,6 +22,9 @@
                 <a href="{{ route('chambres.index') }}" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                     Chambres
                 </a>
+                <a href="{{ route('reservations.index') }}" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Reservation de salle 
+                </a>
             </div>
         </div>
     </div>

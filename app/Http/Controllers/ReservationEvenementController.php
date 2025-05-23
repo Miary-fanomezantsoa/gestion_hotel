@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\ReservationEvenement;
+use App\Models\Salle;
 use Illuminate\Http\Request;
 
 class ReservationEvenementController extends Controller

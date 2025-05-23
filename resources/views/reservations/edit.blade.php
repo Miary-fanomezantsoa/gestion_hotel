@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <h2>Modifier une réservation</h2>
@@ -38,3 +41,4 @@
 
     <button type="submit">Enregistrer</button>
 </form>
+@endsection

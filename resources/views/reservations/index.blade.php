@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <h2>Liste des réservations</h2>
@@ -22,7 +25,7 @@
         <tr>
             <td>{{ $res->nom_client }}</td>
             <td>{{ $res->type_evenement }}</td>
-            <td>{{ $res->date_evenement }}</td>
+            <td>{{ \Carbon\Carbon::parse($res->date_evenement)->format('d/m/Y') }}</td>
             <td>{{ $res->salle ? $res->salle->nom : 'Aucune salle' }}</td>
             <td style="display:flex; gap:5px;">
                 <form action="{{ route('reservations.show', $res) }}" method="GET">
@@ -42,3 +45,4 @@
         </tr>
     @endforeach
 </table>
+@endsection
