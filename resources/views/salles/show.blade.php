@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <h2>Détail de la salle</h2>
@@ -9,3 +12,4 @@
 <p>Disponible : {{ $salle->disponible ? 'Oui' : 'Non' }}</p>
 
 <a href="{{ route('salles.index') }}">Retour</a>
+@endsection

@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <h2>Liste des salles</h2>
@@ -40,3 +43,4 @@
         </tr>
     @endforeach
 </table>
+@endsection

@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <h2>Nouvelle salle</h2>
@@ -28,3 +31,4 @@
 <form action="{{ route('salles.index') }}" method="GET">
     <button type="submit" class="btn">Listes des salles</button>
 </form>
+@endsection

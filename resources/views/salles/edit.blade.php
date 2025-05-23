@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <h2>Modifier la salle</h2>
@@ -26,3 +29,4 @@
 
     <button type="submit">Mettre à jour</button>
 </form>
+@endsection

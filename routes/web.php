@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\ReservationEvenementController;
+use App\Http\Controllers\SalleController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
