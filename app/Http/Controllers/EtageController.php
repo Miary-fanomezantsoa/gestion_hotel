@@ -29,18 +29,19 @@ class EtageController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        
-        $request->validate([
-            'nom_etage' => 'required',
-            'niveau' => 'required|integer',
-        ]);
+{
+    $request->validate([
+        'nom_etage' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'niveau' => 'required|integer',
+        'capacite_max' => 'required|integer',
+        'acces_handicape' => 'required|boolean',
+    ]);
 
-        Etage::create($request->all());
+    Etage::create($request->all());
 
-        return redirect()->route('etages.index')->with('success', 'Étage créé avec succès.');
-    
-    }
+    return redirect()->route('etages.index')->with('success', 'Étage créé avec succès.');
+}
 
     /**
      * Display the specified resource.
@@ -53,18 +54,30 @@ class EtageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    // Affiche le formulaire de modification
+public function edit(string $id)
+{
+    $etage = Etage::findOrFail($id);
+    return view('etages.edit', compact('etage'));
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+// Met à jour les données dans la base
+public function update(Request $request, string $id)
+{
+    $request->validate([
+        'nom_etage' => 'required|string|max:255',
+        'niveau' => 'required|integer',
+        'capacite_max' => 'required|integer',
+        'acces_handicape' => 'required|boolean',
+        'description' => 'nullable|string',
+    ]);
+
+    $etage = Etage::findOrFail($id);
+    $etage->update($request->all());
+
+    return redirect()->route('etages.index')->with('success', 'Étage mis à jour avec succès.');
+}
+
 
     /**
      * Remove the specified resource from storage.

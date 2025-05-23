@@ -1,40 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-3xl mx-auto px-4 py-8">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">Ajouter une chambre</h2>
+<div class="max-w-2xl mx-auto mt-12 p-8 bg-white rounded-xl shadow-lg ring-1 ring-gray-200">
+    <h2 class="text-3xl font-extrabold text-indigo-700 mb-8 text-center">Ajouter une chambre</h2>
 
-    <form action="{{ route('chambres.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md space-y-6">
+    <form action="{{ route('chambres.store') }}" method="POST" class="space-y-6">
         @csrf
 
-        <!-- Numéro de la chambre -->
         <div>
-            <label for="numero" class="block text-sm font-medium text-gray-700 mb-1">Numéro de la chambre</label>
-            <input type="text" name="numero" id="numero" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <label for="numero_chambre" class="block font-semibold text-gray-700">Numéro de chambre</label>
+            <input type="text" name="numero_chambre" id="numero_chambre" required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
-        <!-- Étages -->
         <div>
-            <label for="etage_id" class="block text-sm font-medium text-gray-700 mb-1">Étage</label>
-            <select name="etage_id" id="etage_id" class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                @foreach($etages as $etage)
-                    <option value="{{ $etage->id }}">{{ $etage->numero }}</option>
+            <label for="type_chambre" class="block font-semibold text-gray-700">Type de chambre</label>
+            <select name="type_chambre" id="type_chambre" required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">-- Choisir --</option>
+                <option value="Simple">Simple</option>
+                <option value="Double">Double</option>
+                <option value="Suite">Suite</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="capacite" class="block font-semibold text-gray-700">Capacité</label>
+            <input type="number" name="capacite" id="capacite" required min="1"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+
+        <div>
+            <label for="prix_par_nuit" class="block font-semibold text-gray-700">Prix par nuit (Ar)</label>
+            <input type="number" name="prix_par_nuit" id="prix_par_nuit" required min="0"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+
+        <div>
+            <label for="etat" class="block font-semibold text-gray-700">État</label>
+            <select name="etat" id="etat" required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">-- Choisir --</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Occupée">Occupée</option>
+                <option value="En maintenance">En maintenance</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="id_etage" class="block font-semibold text-gray-700">Étage</label>
+            <select name="id_etage" id="id_etage" required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">-- Sélectionner un étage --</option>
+                @foreach ($etages as $etage)
+                    <option value="{{ $etage->id_etage }}">{{ $etage->nom_etage }} (Niveau {{ $etage->niveau }})</option>
                 @endforeach
             </select>
         </div>
 
-        <!-- Disponible -->
-        <div class="flex items-center space-x-2">
-            <input type="checkbox" name="disponible" id="disponible" class="h-5 w-5 text-blue-600 border-gray-300 rounded" checked>
-            <label for="disponible" class="text-sm text-gray-700">Disponible</label>
-        </div>
-
-        <!-- Bouton d'ajout -->
-        <div>
-            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md shadow hover:bg-blue-700 transition">
-                Ajouter
-            </button>
-        </div>
+        <button type="submit"
+            class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300">
+            Enregistrer la chambre
+        </button>
     </form>
 </div>
 @endsection
