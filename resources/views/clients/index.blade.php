@@ -27,8 +27,8 @@
                     <td class="py-2 px-4 border">{{ $client->email }}</td>
                     <td class="py-2 px-4 border">{{ $client->telephone }}</td>
                     <td class="py-2 px-4 border">
-                        <a href="{{ route('clients.edit', ['id_client' => $client->id_client]) }}" class="text-blue-600">Modifier</a>
-                        <form action="{{ route('clients.destroy', ['id_client' => $client->id_client]) }}" method="POST" class="inline">
+                        <a href="{{ route('clients.edit', $client) }}" class="text-blue-600">Modifier</a>
+                        <form action="{{ route('clients.destroy', $client) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-600 ml-2">Supprimer</button>

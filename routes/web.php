@@ -12,7 +12,6 @@ use App\Http\Controllers\SalleController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-
 Route::resource('etages', EtageController::class);
 Route::resource('chambres', ChambreController::class);
 

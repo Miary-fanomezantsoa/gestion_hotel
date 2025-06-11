@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\ReservationEvenement;
 use App\Models\Salle;
 use Illuminate\Http\Request;
@@ -43,7 +44,6 @@ class ReservationEvenementController extends Controller
 
     public function edit($id)
     {
-        
         $reservation = ReservationEvenement::findOrFail($id);
         $salles = Salle::all();
         return view('reservations.edit', compact('reservation', 'salles'));

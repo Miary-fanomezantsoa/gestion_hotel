@@ -1,43 +1,66 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-6">Liste des Restaurants</h1>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <div class="flex justify-between items-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">Liste des Restaurants</h1>
+                <a href="{{ route('restaurants.create') }}"
+                   class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-black px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200">
+                    ➕ Ajouter un Restaurant
+                </a>
+            </div>
+        </div>
 
-    <a href="{{ route('restaurants.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">
-        Ajouter un Restaurant
-    </a>
-
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-300">
-            <thead>
-                <tr class="bg-gray-100">
-                    <th class="py-2 px-4 border">Nom</th>
-                    <th class="py-2 px-4 border">Type de Cuisine</th>
-                    <th class="py-2 px-4 border">Capacité</th>
-                    <th class="py-2 px-4 border">Horaires</th>
-                    <th class="py-2 px-4 border">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($restaurants as $restaurant)
-                <tr>
-                    <td class="py-2 px-4 border">{{ $restaurant->nom }}</td>
-                    <td class="py-2 px-4 border">{{ $restaurant->type_cuisine }}</td>
-                    <td class="py-2 px-4 border">{{ $restaurant->capacite }}</td>
-                    <td class="py-2 px-4 border">{{ $restaurant->horaires_ouverture }}</td>
-                    <td class="py-2 px-4 border">
-                        <a href="{{ route('restaurants.edit', ['id_restaurant' => $restaurant->id_restaurant]) }}" class="text-blue-600">Modifier</a>
-                        <form action="{{ route('restaurants.destroy', ['id_restaurant' => $restaurant->id_restaurant]) }}" method="POST" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-600 ml-2">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+                        <tr>
+                            <th class="py-4 px-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Nom</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Type de Cuisine</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Capacité</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Horaires</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @foreach($restaurants as $restaurant)
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 text-sm font-medium text-gray-900">{{ $restaurant->nom }}</td>
+                            <td class="py-4 px-6 text-sm text-gray-600">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    {{ $restaurant->type_cuisine }}
+                                </span>
+                            </td>
+                            <td class="py-4 px-6 text-sm text-gray-600">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                     {{ $restaurant->capacite }} personnes
+                                </span>
+                            </td>
+                            <td class="py-4 px-6 text-sm text-gray-600">{{ $restaurant->horaires_ouverture }}</td>
+                            <td class="py-4 px-6 text-sm font-medium space-x-3">
+                                <a href="{{ route('restaurants.edit', $restaurant) }}"
+                                   class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
+                                    Modifier
+                                </a>
+                                <form action="{{ route('restaurants.destroy', $restaurant) }}" method="POST" class="inline"
+                                      onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce restaurant ?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Personnel extends Model
 {
-    protected $table = 'personnel'; // Cette ligne est correcte
+    protected $table = 'personnel'; 
     protected $primaryKey = 'id_personnel';
 
     const DEPARTEMENTS = [

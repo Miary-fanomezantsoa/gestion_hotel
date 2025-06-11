@@ -54,14 +54,12 @@ class EtageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    // Affiche le formulaire de modification
 public function edit(string $id)
 {
     $etage = Etage::findOrFail($id);
     return view('etages.edit', compact('etage'));
 }
 
-// Met à jour les données dans la base
 public function update(Request $request, string $id)
 {
     $request->validate([
@@ -84,6 +82,7 @@ public function update(Request $request, string $id)
      */
     public function destroy(string $id)
     {
-        //
+        Etage::destroy($id);
+        return redirect()->route('etages.index')->with('success', 'Etage supprimée.');
     }
 }

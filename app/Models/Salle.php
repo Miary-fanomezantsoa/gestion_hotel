@@ -11,9 +11,15 @@ class Salle extends Model
 
     protected $fillable = [
         'nom',
+<<<<<<< HEAD
         'nbrPersonne', 
         'description', 
         'prix', 
+=======
+        'nbrPersonne',
+        'description',
+        'prix',
+>>>>>>> e925d63 (Sauvegarde avant pull)
         'disponible'
     ];
 
